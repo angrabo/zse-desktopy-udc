@@ -1,0 +1,30 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:UCDCourseEditor.ViewModels"
+             x:Class="UCDCourseEditor.Views.CoursesView"
+             x:DataType="viewModels:CoursesViewModel">
+    <Grid>
+        <Grid>
+            <!-- Loading Message -->
+            <TextBlock Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" 
+                       IsVisible="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <!-- ItemsControl for Courses -->
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Courses}" 
+                              IsVisible="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Invert}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="24" />
+                                    <TextBlock Text="{Binding Description}" FontSize="14" />
+                                    <TextBlock Text="Instructor: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Instructor}" />
+                                </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

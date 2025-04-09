@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using UCDCourseEditor.Core.Interfaces.Repositories;
+using UCDCourseEditor.Core.Models;
 using UCDCourseEditor.Infrastructure.Database.Data;
 using UCDCourseEditor.Infrastructure.Database.Repositories;
 using UCDCourseEditor.ViewModels;
@@ -29,12 +30,14 @@ public partial class App : Application
         {
             collection.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlite(@"Data Source=C:\Users\ADMIN\Desktop\UCDCourseEditor.db");
+                // Add creating folder in system and put db here
+                options.UseSqlite(@"Data Source=UCDCourseEditor.db");
             });
             collection.AddSingleton<ICourseRepository, CourseRepository>();
 
             collection.AddSingleton<MainWindow>();
             collection.AddSingleton<MainWindowViewModel>();
+            collection.AddSingleton<CoursesViewModel>();
         }).Build();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
