@@ -1,8 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Avalonia;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using UCDCourseEditor.Views;
 
 namespace UCDCourseEditor.ViewModels;
 
@@ -19,8 +21,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _currentViewModel = this;
     }
 
-    public IAsyncRelayCommand NavigateCoursesCommand { get; }
-
+    public IAsyncRelayCommand NavigateCoursesCommand     { get; }
     private Task LoadCoursesViewAsync(CancellationToken cancellationToken)
     {
         CurrentViewModel = _coursesViewModel;

@@ -18,7 +18,7 @@
             <StackPanel Grid.Column="0">
                 <Button Content="Szkolenia" HorizontalAlignment="Stretch" Command="{Binding NavigateCoursesCommand}" />
                 <Button Content="Media" HorizontalAlignment="Stretch" />
-                <Button Content="Dodaj szkolenie" HorizontalAlignment="Stretch"/>
+                <Button Content="Dodaj szkolenie" HorizontalAlignment="Stretch" Click="AddCourseButton_OnCLick"/>
             </StackPanel>
             <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}" Margin="10">
                 

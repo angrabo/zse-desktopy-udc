@@ -9,20 +9,56 @@ public abstract class Repository<TDomain, TEntity> : IRepository<TDomain>
     where TDomain : class, IEntity
     where TEntity : class
 {
-    protected readonly ApplicationDbContext Context;
-    protected readonly DbSet<TEntity>       DbSet;
+    private readonly ApplicationDbContext _context;
+    private readonly DbSet<TEntity>       _dbSet;
 
     protected Repository(ApplicationDbContext context)
     {
-        Context = context;
-        DbSet = Context.Set<TEntity>();
+        _context = context;
+        _dbSet = _context.Set<TEntity>();
     }
-
-    public abstract Task<TDomain> AddAsync(TDomain entity);
-    public abstract Task<TDomain> UpdateAsync(TDomain entity);
-    public abstract Task DeleteAsync(int id);
-    public abstract Task<TDomain> GetByIdAsync(int id);
-    public abstract Task<IEnumerable<TDomain>> GetAllAsync();
+    
+    public virtual async Task<TDomain> AddAsync(TDomain entity)
+    {
+        var entityToAdd = MapToEntity(entity);
+        await _dbSet.AddAsync(entityToAdd);
+        await _context.SaveChangesAsync();
+        
+        return MapToDomain(entityToAdd);
+        
+    }
+    
+    public virtual async Task UpdateAsync(TDomain entity)
+    {
+        var entityToUpdate = MapToEntity(entity);
+        _dbSet.Update(entityToUpdate);
+        await _context.SaveChangesAsync();
+    }
+    
+    public virtual async Task DeleteAsync(int id)
+    {
+        var entityToDelete = await _dbSet.FindAsync(id);
+        if (entityToDelete != null)
+        {
+            _dbSet.Remove(entityToDelete);
+            await _context.SaveChangesAsync();
+        }
+        
+    }
+    
+    public virtual async Task<TDomain?> GetByIdAsync(int id)
+    {
+        var entity = await _dbSet.FindAsync(id);
+        
+        return entity == null ? null : MapToDomain(entity);
+    }
+    
+    public virtual async Task<IEnumerable<TDomain>> GetAllAsync()
+    {
+        var entities = await _dbSet.ToListAsync();
+        var domains = entities.Select(MapToDomain);
+        return domains;
+    }
     
     protected abstract TEntity MapToEntity(TDomain domain);
     protected abstract TDomain MapToDomain(TEntity entity);
