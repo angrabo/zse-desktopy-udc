@@ -12,7 +12,8 @@ public class CourseEntity : EntityBase
     [StringLength(2048)]
     public string Description { get; set; } = string.Empty;
     
-    public int Credits { get; set; }
+    [StringLength(256)]
+    public string ImagePath { get; set; } = string.Empty;
     
     [ForeignKey("Category")]
     public int CategoryId { get; set; }

@@ -7,4 +7,5 @@ public interface IRepository<TDomain> where TDomain : class
     Task DeleteAsync(int            id);
     Task<TDomain?> GetByIdAsync(int id);
     Task<IEnumerable<TDomain>> GetAllAsync();
+    
 }

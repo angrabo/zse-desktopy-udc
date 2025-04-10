@@ -16,7 +16,8 @@ public class CourseRepository(ApplicationDbContext context)
             Id = domain.Id,
             Name = domain.Name,
             Description = domain.Description,
-            Credits = domain.Credits,
+            ImagePath = domain.ImagePath,
+            CategoryId = domain.CategoryId
         };
 
         return courseEntity;
@@ -29,7 +30,8 @@ public class CourseRepository(ApplicationDbContext context)
             Id = entity.Id,
             Name = entity.Name,
             Description = entity.Description,
-            Credits = entity.Credits,
+            ImagePath = entity.ImagePath,
+            CategoryId = entity.CategoryId
         };
 
         return course;

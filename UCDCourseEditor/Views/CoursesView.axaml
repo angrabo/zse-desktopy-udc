@@ -5,24 +5,42 @@
              x:DataType="viewModels:CoursesViewModel">
     <Grid>
         <Grid>
-            <!-- Loading Message -->
-            <TextBlock Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" 
+            <TextBlock Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"
                        IsVisible="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-            <!-- ItemsControl for Courses -->
             <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding Courses}" 
+                <ItemsControl ItemsSource="{Binding Courses}"
                               IsVisible="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Invert}">
+                    <ItemsControl.Styles>
+                        <Style Selector="Border.course-item">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Padding" Value="5" />
+                            <Setter Property="CornerRadius" Value="5" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="Margin" Value="0,5" />
+                        </Style>
+                        <Style Selector="Border.course-item:pointerover">
+                            <Setter Property="Background" Value="#EEEEEE" />
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Style>
+                    </ItemsControl.Styles>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
+                            <Border Classes="course-item">
                                 <StackPanel>
                                     <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="24" />
                                     <TextBlock Text="{Binding Description}" FontSize="14" />
                                     <TextBlock Text="Instructor: " FontWeight="Bold" />
                                     <TextBlock Text="{Binding Instructor}" />
                                 </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel HorizontalAlignment="Stretch" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
                 </ItemsControl>
             </ScrollViewer>
         </Grid>

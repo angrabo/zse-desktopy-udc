@@ -10,19 +10,27 @@ namespace UCDCourseEditor.Views;
 
 public partial class MainWindow : Window
 {
-    public MainWindow(ICourseRepository courseRepository)
-    {
-        InitializeComponent();
-    }
-
+    private readonly MainWindowViewModel _mainWindowViewModel;
+    private readonly CoursesViewModel _coursesViewModel;
+    
     public MainWindow()
     {
-        throw new NotImplementedException();
+        InitializeComponent();
+        _mainWindowViewModel = App.ServiceProvider.GetRequiredService<MainWindowViewModel>();
+        _coursesViewModel = App.ServiceProvider.GetRequiredService<CoursesViewModel>();
+        DataContext = _mainWindowViewModel;
+        _mainWindowViewModel.NavigateCoursesCommand.Execute(_coursesViewModel);
     }
+    
 
-    private void AddCourseButton_OnCLick(object? sender, RoutedEventArgs e)
+    private async void AddCourseButton_OnCLick(object? sender, RoutedEventArgs e)
     {
-        var addCourseDialog = new AddCourseDialog(App.ServiceProvider.GetRequiredService<AddCourseDialogViewModel>());
-        addCourseDialog.ShowDialog(this);
+        var addCourseDialog = new AddCourseDialog();
+        await addCourseDialog.ShowDialog(this);
+        _ = Task.Run(async () =>
+        {
+            await _coursesViewModel.LoadCoursesWithoutLoadingAsync();
+        });
+
     }
 }

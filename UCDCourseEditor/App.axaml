@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:UCDCourseEditor.Views"
              xmlns:viewmodels="clr-namespace:UCDCourseEditor.ViewModels"
              xmlns:converters="clr-namespace:UCDCourseEditor.Converters"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Light">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>

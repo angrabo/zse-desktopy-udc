@@ -1,20 +1,43 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="UCDCourseEditor.Views.AddCourseDialog"
-        WindowStartupLocation="CenterOwner"
-        Width="300" Height="200" 
-        Title="AddCourseDialog">
-        <Grid>
-                <StackPanel Orientation="Vertical">
-                        <Label>Nazwa</Label>
-                        <TextBox></TextBox>
-                        
-                        <Label>Opis</Label>
-                        <TextBox></TextBox>
-                        
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:UCDCourseEditor.ViewModels"
+             x:Class="UCDCourseEditor.Views.AddCourseDialog"
+             Width="450" Height="300"
+             x:DataType="viewModels:AddCourseDialogViewModel">
+    
+    <Design.DataContext>
+        <viewModels:AddCourseDialogViewModel/>
+    </Design.DataContext>
+
+    <Grid>
+        <StackPanel>
+            <StackPanel>
+                <Label>Nazwa</Label>
+                <TextBox Text="{Binding CourseName}"/>
+            </StackPanel>
+            <StackPanel>
+                <Label>Opis</Label>
+                <TextBox Height="100" AcceptsReturn="True" TextWrapping="Wrap" Text="{Binding CourseDescription}"/>
+            </StackPanel>
+            <StackPanel>
+                <Label>Banner</Label>
+                <Grid  HorizontalAlignment="Stretch" Width="{Binding $parent[Window].Width}">
+                    <Button HorizontalAlignment="Right" Click="SelectImageFile_OnClick">...</Button>
+                    <TextBox Text="{Binding ImagePath}"/>
+                    <Button HorizontalAlignment="Right" Click="SelectImageFile_OnClick">...</Button>
+                </Grid>
+            </StackPanel>
+                <Button Content="Dodaj"
+                        IsVisible="{Binding IsAdded, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Invert}"
+                        HorizontalAlignment="Center" Margin="0,20,0,0" Command="{Binding AddCourseCommand}"/>
+                <StackPanel Orientation="Vertical"
+                            IsVisible="{Binding IsAdded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Label Foreground="Chartreuse">Dodano</Label>
+                    <Button Content="Wróć"/>
                 </StackPanel>
-        </Grid>
-</Window>
+        </StackPanel>
+    </Grid>
+
+</UserControl>
