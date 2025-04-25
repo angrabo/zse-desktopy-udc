@@ -1,0 +1,128 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+            <StackPanel Spacing="10">
+                <Border Padding="20" Classes="CardBorder">
+                    <TextBlock>KAJHKJA</TextBlock>
+                </Border>
+                <Button Content="Kliknij mnie" Classes="PrimaryButton"/>
+                <Button Content="Disabled" Classes="PrimaryButton" IsEnabled="False"/>
+                <Button Content="Kliknij mnie" Classes="PrimaryButtonOutlined"/>
+                <Button Content="Disabled" Classes="PrimaryButtonOutlined" IsEnabled="False"/>
+                <Border Classes="">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="1" VerticalAlignment="Center"/>
+                        <TextBlock Text=" / " VerticalAlignment="Center"/>
+                        <TextBlock Text="5" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+                <Button Content="Wszystkie" Classes="tabButton selected" Margin="0,0,10,0" />
+                <Button Content="Aktywne" Classes="tabButton" Margin="10,0" />
+                <Button Content="Archiwalne" Classes="tabButton" Margin="10,0" />
+            </StackPanel>
+        </Border>
+        
+    </Design.PreviewWith>
+    
+    <Style Selector="Button">
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+    
+    <Style Selector="Button.PrimaryButton">
+        <Setter Property="Background" Value="#7E57C2" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Padding" Value="15,8" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    
+    <Style Selector="Button.PrimaryButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#9575CD" />
+    </Style>
+    
+    <Style Selector="Button.PrimaryButton:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#5E35B1" />
+        <Setter Property="RenderTransform" Value="scale(0.98)" />
+    </Style>
+    
+    <Style Selector="Button.PrimaryButton:disabled /template/ ContentPresenter">
+        <Setter Property="Background" Value="#BDBDBD" />
+        <Setter Property="Opacity" Value="0.6" />
+    </Style>
+    
+    <Style Selector="Button.PrimaryButtonOutlined">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#7E57C2" />
+        <Setter Property="BorderBrush" Value="#7E57C2" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    
+    <Style Selector="Button.PrimaryButtonOutlined:pointerover /template/ ContentPresenter">
+        <Setter Property="Foreground" Value="#EDE7F6" />
+        <Setter Property="Background" Value="#7E57C2" />
+        <Setter Property="BorderBrush" Value="#7E57C2" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    
+    <Style Selector="Button.menuButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#616161" />
+        <Setter Property="Padding" Value="15,8" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="CornerRadius" Value="4" />
+    </Style>
+        
+    <Style Selector="Button.menuButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#F0F0F0" />
+    </Style>
+        
+    <Style Selector="Button.menuButton.selected">
+        <Setter Property="Background" Value="#EDE7F6" />
+        <Setter Property="Foreground" Value="#7E57C2" />
+    </Style>
+        
+    <Style Selector="Button.tabButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#616161" />
+        <Setter Property="Padding" Value="15,8" />
+        <Setter Property="CornerRadius" Value="4" />
+    </Style>
+    
+    <Style Selector="Button.tabButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#EDE7F6" />
+        <Setter Property="Foreground" Value="#7E57C2" />
+        <Setter Property="BorderThickness" Value="0,0,0,2" />
+        <Setter Property="BorderBrush" Value="#7E57C2" />
+        
+    </Style>
+    
+    <Style Selector="Button.tabButton.selected">
+        <Setter Property="Foreground" Value="#7E57C2" />
+        <Setter Property="BorderThickness" Value="0,0,0,2" />
+        <Setter Property="BorderBrush" Value="#7E57C2" />
+    </Style>
+        
+    <Style Selector="TextBox">
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="35,12,12,12" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#E0E0E0" />
+    </Style>
+    
+    <Style Selector="Border.CardBorder">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#E0E0E0"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransform" Value="none" />
+    </Style>
+
+    <Style Selector="Border.CardBorder:pointerover">
+        <Setter Property="BoxShadow" Value="5 5 20 -10 DarkGray"/>
+    </Style>
+    
+</Styles>

@@ -1,0 +1,82 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:UCDCourseEditorUltra.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:UCDCourseEditorUltra.Views"
+        mc:Ignorable="d" x:Class="UCDCourseEditorUltra.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        d:DesignWidth="1200" d:DesignHeight="650"
+        Width="1200" Height="650"
+        MinWidth="800" MinHeight="600"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="UCDCourseEditorUltra">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="250,*">
+
+        <Border Grid.Column="0" Background="#F5F5F5">
+            <StackPanel Margin="15">
+
+                <TextBlock Text="UCD Course Editor Ultra" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"
+                           Margin="0,0,0,20" />
+                
+                <Button Classes="menuButton" Margin="0,5" Command="{Binding NavigateToCoursesCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <PathIcon
+                            Data="m 12.499079,12.25525 c 0.0968,0 0.188377,-0.0436 0.249339,-0.11884 0.06096,-0.0752 0.08473,-0.17385 0.06473,-0.26853 l -0.202146,-0.95662 c 0.115125,-0.11137 0.187491,-0.26686 0.187491,-0.43975 0,-0.182 -0.08106,-0.34343 -0.206876,-0.45558 l 0,-3.32202 -0.810333,0.50146 0,2.82056 c -0.125815,0.11215 -0.2069,0.27358 -0.2069,0.45558 0,0.17291 0.07239,0.32841 0.187515,0.43975 l -0.20217,0.95662 c -0.02,0.0947 0.0038,0.19335 0.06473,0.26853 0.06096,0.0752 0.152539,0.11884 0.249339,0.11884 l 0.625281,0 z M 12.773741,4.75539 7.5021019,1.49209 C 7.3477151,1.39699 7.1736728,1.34925 6.9996305,1.34925 c -0.1740423,0 -0.3482077,0.0477 -0.5016586,0.14284 l -5.271713,3.2633 C 1.0854931,4.84249 0.99999905,4.99633 0.99999905,5.1619 c 0,0.1656 0.085494,0.31949 0.22625985,0.40673 l 5.2716883,3.26333 c 0.153451,0.0952 0.3276163,0.14284 0.5016586,0.14284 0.1740423,0 0.3481092,-0.0477 0.5024714,-0.14284 L 12.773741,5.56863 c 0.140766,-0.0872 0.22626,-0.24113 0.22626,-0.40673 0,-0.16557 -0.08549,-0.31946 -0.22626,-0.40651 z M 6.9996059,9.78508 c -0.3283798,0 -0.6488777,-0.0912 -0.928242,-0.26411 l -3.0750017,-1.90368 0,3.27796 c 0,0.97016 1.7931578,1.7555 4.0032436,1.7555 2.2108742,0 4.0038842,-0.78536 4.0038842,-1.7555 l 0,-3.27796 -3.0748786,1.90368 C 7.6492472,9.69388 7.3279857,9.78508 6.9996059,9.78508 Z"
+                            Width="20" Height="20" Foreground="#00AF87" />
+                        <TextBlock Text="Szkolenia" Margin="10,0,0,0" />
+                    </StackPanel>
+                </Button>
+                
+                <Button Classes="menuButton" Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <PathIcon
+                            Data="M7.24 2H5.34C3.15 2 2 3.15 2 5.33V7.23C2 9.41 3.15 10.56 5.33 10.56H7.23C9.41 10.56 10.56 9.41 10.56 7.23V5.33C10.57 3.15 9.42 2 7.24 2Z M18.6695 2H16.7695C14.5895 2 13.4395 3.15 13.4395 5.33V7.23C13.4395 9.41 14.5895 10.56 16.7695 10.56H18.6695C20.8495 10.56 21.9995 9.41 21.9995 7.23V5.33C21.9995 3.15 20.8495 2 18.6695 2Z M18.6695 13.4297H16.7695C14.5895 13.4297 13.4395 14.5797 13.4395 16.7597V18.6597C13.4395 20.8397 14.5895 21.9897 16.7695 21.9897H18.6695C20.8495 21.9897 21.9995 20.8397 21.9995 18.6597V16.7597C21.9995 14.5797 20.8495 13.4297 18.6695 13.4297Z M7.24 13.4297H5.34C3.15 13.4297 2 14.5797 2 16.7597V18.6597C2 20.8497 3.15 21.9997 5.33 21.9997H7.23C9.41 21.9997 10.56 20.8497 10.56 18.6697V16.7697C10.57 14.5797 9.42 13.4297 7.24 13.4297Z"
+                            Width="20" Height="20" Foreground="#2B5D006E" />
+                        <TextBlock Text="Kategorie" Margin="10,0,0,0" />
+                    </StackPanel>
+                </Button>
+
+                <Button Classes="menuButton" Margin="0,5" Command="{Binding NavigateToMediaCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <PathIcon Data="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                                  Width="20" Height="20" Foreground="#FFC107" />
+                        <TextBlock Text="Media" Margin="10,0,0,0" />
+                    </StackPanel>
+                </Button>
+                
+                <Button Classes="menuButton" Margin="0,5" Command="{Binding NavigateToFilesCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <PathIcon
+                            Data="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v6a2 2 0 002 2h2v-1"
+                            Width="20" Height="20" Foreground="#9E9E9E" />
+                        <TextBlock Text="Dokumenty" Margin="10,0,0,0" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+        
+        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
+            <ContentControl.DataTemplates>
+                <DataTemplate DataType="{x:Type vm:CoursesViewModel}">
+                    <views:CoursesView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:FilesViewModel}">
+                    <views:FilesView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:MediaViewModel}">
+                    <views:MediaView />
+                </DataTemplate>
+            </ContentControl.DataTemplates>
+        </ContentControl>
+        
+    </Grid>
+
+</Window>

@@ -1,0 +1,96 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:UCDCourseEditorUltra.ViewModels"
+             xmlns:converters="clr-namespace:UCDCourseEditorUltra.Converters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="UCDCourseEditorUltra.Views.CoursesView"
+             x:DataType="viewModels:CoursesViewModel">
+
+    <UserControl.Resources>
+        <converters:TileWidthConverter x:Key="TileWidthConverter" />
+    </UserControl.Resources>
+    
+    <Design.DataContext>
+        <viewModels:CoursesViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="30,20" RowDefinitions="Auto,Auto,Auto,6*,*">
+
+        <Grid Grid.Row="0">
+            <TextBlock Text="Moje szkolenia" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" />
+            <Button Content="+ Dodaj szkolenie" Classes="PrimaryButton" HorizontalAlignment="Right" />
+        </Grid>
+
+        <TextBox Grid.Row="1" Watermark="Wyszukaj szkolenie..." Width="280"
+                 HorizontalAlignment="Left">
+        </TextBox>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,20,0,20">
+            <Button Content="Wszystkie" Classes="tabButton selected" Margin="0,0,10,0" />
+            <Button Content="Aktywne" Classes="tabButton" Margin="10,0" />
+            <Button Content="Archiwalne" Classes="tabButton" Margin="10,0" />
+        </StackPanel>
+
+        <ProgressBar Grid.Row="3" IsIndeterminate="True" IsVisible="{Binding IsLoading}" 
+                     VerticalAlignment="Center" HorizontalAlignment="Center" />
+        
+        <ScrollViewer Grid.Row="3">
+            <ItemsControl ItemsSource="{Binding Courses}" IsVisible="{Binding !IsLoading}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Classes="CardBorder"
+                            Width="{Binding $parent[ScrollViewer].Bounds.Width, Converter={StaticResource TileWidthConverter}}"
+                            Tapped="InputElement_OnTapped"
+                            MinWidth="280" MaxWidth="500"
+                            Margin="0,0,20,20" Height="180">
+                            <Grid Margin="15" RowDefinitions="Auto,*,Auto">
+
+                                <TextBlock Text="{Binding Name}" Grid.Row="0" FontSize="16"
+                                           FontWeight="SemiBold" />
+                                <TextBlock TextWrapping="Wrap" Grid.Row="1" Margin="0,10,0,0" Opacity="0.8"
+                                           Text="{Binding Description}" />
+
+                                <Grid Grid.Row="2">
+                                    <Border Background="#F3E8FF" CornerRadius="15" Padding="8,4"
+                                            HorizontalAlignment="Left">
+                                        <TextBlock Text="{Binding Hours, StringFormat='{}{0} godzin'}"
+                                                   Foreground="#7E57C2" FontSize="12" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" Spacing="10">
+            <Button Content="&lt;" 
+                    Command="{Binding PreviousPageCommand}"
+                    IsEnabled="{Binding HasPreviousPage}"
+                    Width="40"
+                    Classes="PrimaryButton"/>
+    
+            <Border CornerRadius="3" Padding="10,5">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding CurrentPage}" VerticalAlignment="Center"/>
+                    <TextBlock Text=" / " VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalPages}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+    
+            <Button Content="&gt;"
+                    Command="{Binding NextPageCommand}"
+                    IsEnabled="{Binding HasNextPage}"
+                    Width="40" Classes="PrimaryButton"
+                    />
+        </StackPanel>
+    </Grid>
+</UserControl>
